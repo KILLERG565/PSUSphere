@@ -1,0 +1,56 @@
+{% if is_paginated %}
+79 <div class="card-footer px-0 border-0 d-flex flex-column flex-lg-row align-items-center
+80 justify-content-between mt-3">
+81 <nav aria-label="Topics pagination" class="mb-4">
+82 <ul class="pagination">
+83 {% if page_obj.number > 1 %}
+84 <li class="page-item">
+85 <a class="page-link" href="?page=1">First</a>
+86 </li>
+87 {% else %}
+88 <li class="page-item disabled">
+89 <span class="page-link">First</span>
+90 </li>
+91 {% endif %} {% if page_obj.has_previous %}
+92 <li class="page-item">
+93 <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Prev</a>
+94 </li>
+95 {% else %}
+96 <li class="page-item disabled">
+97 <span class="page-link">Prev</span>
+98 </li>
+99 {% endif %} {% for page_num in paginator.page_range %} {% if page_obj.number == page_num
+100 %}
+101 <li class="page-item active">
+102 <span class="page-link">
+103 {{ page_num }}
+104 <span class="sr-only">(current)</span>
+105 </span>
+106 </li>
+107 {% elif page_num > page_obj.number|add:'-3' and page_num < page_obj.number|add:'3' %}
+108 <li class="page-item">
+109 <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+110 </li>
+111 {% endif %} {% endfor %} {% if page_obj.has_next %}
+112 <li class="page-item">
+113 <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+114 </li>
+115 {% else %}
+116 <li class="page-item disabled">
+117 <span class="page-link">Next</span>
+118 </li>
+119 {% endif %} {% if page_obj.number != paginator.num_pages %}
+120 <li class="page-item">
+121 <a class="page-link" href="?page={{ paginator.num_pages }}">Last</a>
+122 </li>
+123 {% else %}
+124 <li class="page-item disabled">
+125 <span class="page-link">Last</span>
+126 </li>
+127 {% endif %}
+128 </ul>
+129 </nav>
+130 <div class="fw-normal small mt-4 mt-lg-0">Showing <b>{{object_list.count}}</b> out of
+131 <b>{{paginator.count}}</b> entries</div>
+132 </div>
+133 {% endif %}

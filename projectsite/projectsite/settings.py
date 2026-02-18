@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "studentorg",
+    "widget_tweaks",
 ]
 
 MIDDLEWARE = [
@@ -68,11 +69,16 @@ TEMPLATES = [
     },
 ]
 
-STATIC_URL = '/static/'
 
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
+    BASE_DIR / 'static',
 ]
+
+## Removed invalid TEMPLATES[0]['DIRS'] block. The correct TEMPLATES setting is already defined above.
 
 WSGI_APPLICATION = 'projectsite.wsgi.application'
 

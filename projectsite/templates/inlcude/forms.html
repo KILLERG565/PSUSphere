@@ -1,0 +1,25 @@
+{% load widget_tweaks %}
+50
+51 {% if form.non_field_errors %}
+52 <div class="alert alert-danger" role="alert">
+53 {% for error in form.non_field_errors %}
+54 <p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>
+55 {% endfor %}
+56 </div>
+57 {% endif %}
+58
+59 {% for field in form %}
+60
+61 <div class="field item form-group">
+62 <label>{{ field.label_tag }}</label>
+63 <div class="form-group">
+64 {% render_field field class="form-control" %}
+65 </div>
+66
+67 {% for error in field.errors %}
+68 <div class="invalid-feedback">
+69 {{ error }}
+70 </div>
+71 {% endfor %}
+72
+73 </div>
