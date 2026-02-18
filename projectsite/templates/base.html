@@ -12,10 +12,96 @@
 </head>
 <body>
     <div class="wrapper">
-        <!-- Main header and navigation would go here -->
+        <div class="main-header">
+            <div class="logo-header">
+                <a href="/" class="logo">
+                    Ready Dashboard
+                </a>
+                <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <button class="topbar-toggler more"><i class="la la-ellipsis-v"></i></button>
+            </div>
+            <nav class="navbar navbar-header navbar-expand-lg">
+                <div class="container-fluid">
+                    <!-- Add your nav content here -->
+                </div>
+            </nav>
+        </div>
+        <div class="sidebar">
+            <div class="scrollbar-inner sidebar-wrapper">
+                <div class="user">
+                    <div class="photo">
+                        <img src="{% static 'img/profile.jpg' %}">
+                    </div>
+                    <div class="info">
+                        <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+                            <span>
+                                Hizrian
+                                <span class="user-level">Administrator</span>
+                                <span class="caret"></span>
+                            </span>
+                        </a>
+                        <div class="clearfix"></div>
+                        <div class="collapse in" id="collapseExample" aria-expanded="true" style ="-webkit-nbsp-mode: normal;">
+                            <ul class="nav">
+                                <li><a href="#profile"><span class="link-collapse">My Profile</span></a></li>
+                                <li><a href="#edit"><span class="link-collapse">Edit Profile</span></a></li>
+                                <li><a href="#settings"><span class="link-collapse">Settings</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item"><a href="/"><i class="la la-dashboard"></i><p>Dashboard</p><span class="badge badge-count">5</span></a></li>
+                    <li class="nav-item"><a href="#"><i class="la la-table"></i><p>Components</p><span class="badge badge-count">14</span></a></li>
+                    <li class="nav-item"><a href="#"><i class="la la-keyboard-o"></i><p>Forms</p><span class="badge badge-count">50</span></a></li>
+                    <li class="nav-item"><a href="#"><i class="la la-th"></i><p>Tables</p><span class="badge badge-count">6</span></a></li>
+                    <li class="nav-item"><a href="#"><i class="la la-bell"></i><p>Notifications</p><span class="badge badge-success">3</span></a></li>
+                    <li class="nav-item active"><a href="#"><i class="la la-font"></i><p>Typography</p><span class="badge badge-danger">25</span></a></li>
+                    <li class="nav-item"><a href="#"><i class="la la-fonticons"></i><p>Icons</p></a></li>
+                    <li class="nav-item update-pro"><button  data-toggle="modal" data-target="#modalUpdate"><i class="la la-hand-pointer-o"></i><p>Update To Pro</p></button></li>
+                </ul>
+            </div>
+        </div>
         <div class="main-panel">
-            {% block content %}
-            {% endblock %}
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul class="nav">
+                            <li class="nav-item"><a class="nav-link" href="http://www.themekita.com">ThemeKita</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Help</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Licenses</a></li>
+                        </ul>
+                    </nav>
+                    <div class="copyright ml-auto">
+                        2018, made with <i class="la la-heart heart text-danger"></i> by <a href="http://www.themekita.com">ThemeKita</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h6 class="modal-title"><i class="la la-frown-o"></i> Under Development</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Currently the pro version of the <b>Ready Dashboard</b> Bootstrap is in progress development</p>
+                    <p><b>We'll let you know when it's done</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Scripts -->
