@@ -1,26 +1,29 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block content %}
 <h1>Home Page</h1>
 
-<ul>
-  {% for item in page_obj %}
-    <li>{{ item.name }}</li>
-  {% empty %}
-    <li>No items found.</li>
-  {% endfor %}
-</ul>
+{% if page_obj %}
+    <ul>
+    {% for item in page_obj %}
+        <li>{{ item.name }} - {{ item.description }}</li>
+    {% endfor %}
+    </ul>
 
-<div class="pagination">
-  {% if page_obj.has_previous %}
-    <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
-  {% endif %}
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
 
-  <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
 
-  {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}">Next</a>
-  {% endif %}
-</div>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+{% else %}
+    <p>No items found.</p>
+{% endif %}
+
+<a href="{% url 'add_item' %}" class="btn">Add New Item</a>
 {% endblock %}

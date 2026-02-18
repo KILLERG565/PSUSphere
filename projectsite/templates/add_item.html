@@ -4,8 +4,10 @@
 <h1>Add New Item</h1>
 
 <form method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Submit</button>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
 </form>
+
+<a href="{% url 'home' %}">Back to Home</a>
 {% endblock %}

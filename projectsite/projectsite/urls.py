@@ -19,7 +19,7 @@ from django.urls import path
 from django.urls import path
 from studentorg import views
 urlpatterns = [
-    path('', views.HomePageView.as_view(), name='home'),
+    path('', views.home, name='home'),
     path('add/', views.add_item, name='add_item'),
     path('admin/', admin.site.urls),
     path('home/', views.home, name='home'),

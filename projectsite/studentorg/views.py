@@ -5,10 +5,6 @@ from .models import Item, Organization
 from django.views.generic.list import ListView
 # Create your views here.
 
-# CozyCup Café homepage view
-def cozycup_home(request):
-    return render(request, 'cozycup_index.html')
-
 def home(request):
     items = Item.objects.all().order_by('id')  # Fetch all items
     paginator = Paginator(items, 5)  # Show 5 items per page
