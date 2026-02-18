@@ -31,6 +31,17 @@ class Organization(BaseModel):
     def __str__(self):
         return self.name
 
+
+
+# Added Item model to match usage in forms.py and views.py
+class Item(BaseModel):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+# Student model was cut off, add it back
 class Student(BaseModel):
     student_id = models.CharField(max_length=15)
     lastname = models.CharField(max_length=25)
@@ -41,7 +52,11 @@ class Student(BaseModel):
     def __str__(self):
         return f"{self.lastname}, {self.firstname}"
 
+    def __str__(self):
+        return f"{self.lastname}, {self.firstname}"
+
+# OrgMember model must be defined after Student and Organization
 class OrgMember(BaseModel):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    student = models.ForeignKey('Student', on_delete=models.CASCADE)
+    organization = models.ForeignKey('Organization', on_delete=models.CASCADE)
     date_joined = models.DateField()

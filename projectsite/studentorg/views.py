@@ -5,7 +5,7 @@ from .models import Item
 
 # Create your views here.
 def home(request):
-    items = Item.objects.all()  # Fetch all items
+    items = Item.objects.all().order_by('id')  # Fetch all items
     paginator = Paginator(items, 5)  # Show 5 items per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
