@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.core.paginator import Paginator
+from studentorg.forms import ItemForm
 from .models import Item
+
 # Create your views here.
 def home(request):
     items = Item.objects.all()  # Fetch all items
@@ -9,4 +11,13 @@ def home(request):
     page_obj = paginator.get_page(page_number)
 
     return render(request, 'home.html', {'page_obj': page_obj})
-    
+
+def add_item(request):
+    if request.method == 'POST':
+        form = ItemForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  # Redirect back to home
+    else:
+        form = ItemForm()
+    return render(request, 'add_item.html', {'form': form})
