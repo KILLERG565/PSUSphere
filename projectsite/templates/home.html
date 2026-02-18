@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 <h1>Home Page</h1>
 
 <ul>
   {% for item in page_obj %}
-    <li>{{ item.name }}</li>  <!-- Replace 'name' with your model field -->
+    <li>{{ item.name }}</li>
+  {% empty %}
+    <li>No items found.</li>
   {% endfor %}
 </ul>
 

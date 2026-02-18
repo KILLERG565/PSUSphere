@@ -1,66 +1,36 @@
 {% load static %}
-141 <!DOCTYPE html>
-142
-143 <title>Typography - Ready Bootstrap Dashboard</title>
-144 <title>{% block title %}PSUSphere{% endblock %}</title>
-145
-146 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-147 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-
-rev date: 2024-03 rev 00 3
-148
-149 <link rel="stylesheet" href="assets/css/ready.css">
-150 <link rel="stylesheet" href="assets/css/demo.css">
-151 <link rel="stylesheet" href="{% static 'css/ready.css' %}">
-152 <link rel="stylesheet" href="{% static 'css/demo.css' %}">
-153
-154 <script src="assets/js/core/jquery.3.2.1.min.js"></script>
-155 <script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-156 <script src="assets/js/core/popper.min.js"></script>
-157 <script src="assets/js/core/bootstrap.min.js"></script>
-158 <script src="assets/js/plugin/chartist/chartist.min.js"></script>
-159 <script src="assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
-160 <script src="assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
-161 <script src="assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
-162 <script src="assets/js/plugin/jquery-mapael/jquery.mapael.min.js"></script>
-163 <script src="assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
-164 <script src="assets/js/plugin/chart-circle/circles.min.js"></script>
-165 <script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-166 <script src="assets/js/ready.min.js"></script>
-167 <script src="{% static 'js/core/jquery.3.2.1.min.js' %}"></script>
-168 <script src="{% static 'js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
-169 <script src="{% static 'js/core/popper.min.js' %}"></script>
-170 <script src="{% static 'js/core/bootstrap.min.js' %}"></script>
-171 <script src="{% static 'js/plugin/chartist/chartist.min.js' %}"></script>
-172 <script src="{% static 'js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js'
-173 %}"></script>
-174 <script src="{% static 'js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
-175 <script src="{% static 'js/plugin/bootstrap-toggle/bootstrap-toggle.min.js' %}"></script>
-176 <script src="{% static 'js/plugin/jquery-mapael/jquery.mapael.min.js' %}"></script>
-177 <script src="{% static 'js/plugin/jquery-mapael/maps/world_countries.min.js' %}"></script>
-178 <script src="{% static 'js/plugin/chart-circle/circles.min.js' %}"></script>
-179 <script src="{% static 'js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
-180 <script src="{% static 'js/ready.min.js' %}"></script>
-{% endblock %}
-185 <div class="content">
-186 ... (all codes in content div)
-187 </div>
-
-{% extends 'base.html' %} {% load static %} {% block content %}
-192 <div class="content">
-193 <div class="container-fluid">
-194 <h4 class="page-title">Home</h4>
-195 <div class="row">
-196 <div class="col-md-12">
-197 <div class="card">
-198 <div class="card-header">
-199 <div class="card-title">Page Title</div>
-200 <div class="card-category">Page Subtitle</div>
-201 </div>
-202 <div class="card-body">Hello, World</div>
-203 </div>
-204 </div>
-205 </div>
-206 </div>
-207 </div>
-208 {% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>{% block title %}PSUSphere{% endblock %}</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="{% static 'css/ready.css' %}">
+    <link rel="stylesheet" href="{% static 'css/demo.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Main header and navigation would go here -->
+        <div class="main-panel">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="{% static 'js/core/jquery.3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/core/popper.min.js' %}"></script>
+    <script src="{% static 'js/core/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/plugin/chartist/chartist.min.js' %}"></script>
+    <script src="{% static 'js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js' %}"></script>
+    <script src="{% static 'js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+    <script src="{% static 'js/plugin/bootstrap-toggle/bootstrap-toggle.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jquery-mapael/jquery.mapael.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jquery-mapael/maps/world_countries.min.js' %}"></script>
+    <script src="{% static 'js/plugin/chart-circle/circles.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+    <script src="{% static 'js/ready.min.js' %}"></script>
+</body>
+</html>
