@@ -1,8 +1,23 @@
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock %}
-
 {% block content %}
-<h1>Welcome to PSUSphere</h1>
-<p>This is the home page.</p>
+<h1>Home Page</h1>
+
+<ul>
+  {% for item in page_obj %}
+    <li>{{ item.name }}</li>  <!-- Replace 'name' with your model field -->
+  {% endfor %}
+</ul>
+
+<div class="pagination">
+  {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+  {% endif %}
+
+  <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+  {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">Next</a>
+  {% endif %}
+</div>
 {% endblock %}
