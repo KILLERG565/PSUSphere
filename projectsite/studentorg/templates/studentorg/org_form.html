@@ -1,12 +1,12 @@
 {% extends 'studentorg/base.html' %}
-{% block title %}{{ view.model.__name__ }} Form — PSUSphere{% endblock %}
-{% block page_title %}{{ view.model.__name__ }} Form{% endblock %}
+{% block title %}{{ model_name }} Form — PSUSphere{% endblock %}
+{% block page_title %}{{ model_name }} Form{% endblock %}
 
 {% block content %}
 <div class="form-card">
   <h5 class="fw-semibold mb-4">
     {% if object %}Edit{% else %}Add New{% endif %}
-    {{ view.model.__name__ }}
+    {{ model_name }}
   </h5>
 
   <form method="post">
