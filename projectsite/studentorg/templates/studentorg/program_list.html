@@ -1,0 +1,29 @@
+{% extends 'studentorg/base.html' %}
+{% block title %}Programs — PSUSphere{% endblock %}
+{% block nav_program %}active{% endblock %}
+{% block page_title %}Programs{% endblock %}
+{% block content %}
+<div class="table-card">
+  <div class="table-card-header">
+    <h5><i class="bi bi-book me-2 text-muted"></i>All Programs</h5>
+    <a href="{% url 'program-add' %}" class="btn btn-sm btn-psu"><i class="bi bi-plus-lg me-1"></i>Add Program</a>
+  </div>
+  <table class="table mb-0">
+    <thead><tr><th>#</th><th>Program</th><th>College</th><th>Actions</th></tr></thead>
+    <tbody>
+      {% for p in programs %}
+      <tr>
+        <td class="text-muted">{{ forloop.counter }}</td>
+        <td><strong>{{ p.prog_name }}</strong></td>
+        <td><span class="badge bg-light text-dark">{{ p.college }}</span></td>
+        <td>
+          <a href="{% url 'program-edit' p.pk %}" class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-pencil"></i></a>
+          <a href="{% url 'program-delete' p.pk %}" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></a>
+        </td>
+      </tr>
+      {% empty %}<tr><td colspan="4" class="text-center text-muted py-4">No programs found.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+  {% include 'studentorg/_pagination.html' %}
+</div>
+{% endblock %}

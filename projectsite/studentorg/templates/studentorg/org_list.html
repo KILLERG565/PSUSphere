@@ -1,0 +1,30 @@
+{% extends 'studentorg/base.html' %}
+{% block title %}Organizations — PSUSphere{% endblock %}
+{% block nav_org %}active{% endblock %}
+{% block page_title %}Organizations{% endblock %}
+{% block content %}
+<div class="table-card">
+  <div class="table-card-header">
+    <h5><i class="bi bi-people me-2 text-muted"></i>All Organizations</h5>
+    <a href="{% url 'org-add' %}" class="btn btn-sm btn-psu"><i class="bi bi-plus-lg me-1"></i>Add Org</a>
+  </div>
+  <table class="table mb-0">
+    <thead><tr><th>#</th><th>Name</th><th>College</th><th>Description</th><th>Actions</th></tr></thead>
+    <tbody>
+      {% for org in organizations %}
+      <tr>
+        <td class="text-muted">{{ forloop.counter }}</td>
+        <td><strong>{{ org.name }}</strong></td>
+        <td><span class="badge bg-light text-dark">{{ org.college }}</span></td>
+        <td><small class="text-muted">{{ org.description|truncatechars:60 }}</small></td>
+        <td>
+          <a href="{% url 'org-edit' org.pk %}" class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-pencil"></i></a>
+          <a href="{% url 'org-delete' org.pk %}" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></a>
+        </td>
+      </tr>
+      {% empty %}<tr><td colspan="5" class="text-center text-muted py-4">No organizations found.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+  {% include 'studentorg/_pagination.html' %}
+</div>
+{% endblock %}

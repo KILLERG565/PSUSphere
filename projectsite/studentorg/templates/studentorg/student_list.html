@@ -1,0 +1,30 @@
+{% extends 'studentorg/base.html' %}
+{% block title %}Students — PSUSphere{% endblock %}
+{% block nav_student %}active{% endblock %}
+{% block page_title %}Students{% endblock %}
+{% block content %}
+<div class="table-card">
+  <div class="table-card-header">
+    <h5><i class="bi bi-person-badge me-2 text-muted"></i>All Students</h5>
+    <a href="{% url 'student-add' %}" class="btn btn-sm btn-psu"><i class="bi bi-plus-lg me-1"></i>Add Student</a>
+  </div>
+  <table class="table mb-0">
+    <thead><tr><th>Student ID</th><th>Name</th><th>Program</th><th>College</th><th>Actions</th></tr></thead>
+    <tbody>
+      {% for s in students %}
+      <tr>
+        <td><code>{{ s.student_id }}</code></td>
+        <td><strong>{{ s.lastname }}, {{ s.firstname }}{% if s.middlename %} {{ s.middlename|first }}.{% endif %}</strong></td>
+        <td>{{ s.program }}</td>
+        <td><span class="badge bg-light text-dark">{{ s.program.college }}</span></td>
+        <td>
+          <a href="{% url 'student-edit' s.pk %}" class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-pencil"></i></a>
+          <a href="{% url 'student-delete' s.pk %}" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></a>
+        </td>
+      </tr>
+      {% empty %}<tr><td colspan="5" class="text-center text-muted py-4">No students found.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+  {% include 'studentorg/_pagination.html' %}
+</div>
+{% endblock %}

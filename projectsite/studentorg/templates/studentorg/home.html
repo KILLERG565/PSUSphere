@@ -1,0 +1,100 @@
+{% extends 'studentorg/base.html' %}
+{% block title %}Dashboard — PSUSphere{% endblock %}
+{% block nav_home %}active{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="row g-3 mb-4">
+  <div class="col-sm-6 col-xl-3">
+    <div class="stat-card">
+      <div class="stat-icon" style="background:#eff6ff; color:#2563eb;">
+        <i class="bi bi-building"></i>
+      </div>
+      <div>
+        <div class="stat-label">Colleges</div>
+        <div class="stat-value">{{ college_count }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-xl-3">
+    <div class="stat-card">
+      <div class="stat-icon" style="background:#f0fdf4; color:#16a34a;">
+        <i class="bi bi-book"></i>
+      </div>
+      <div>
+        <div class="stat-label">Programs</div>
+        <div class="stat-value">{{ program_count }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-xl-3">
+    <div class="stat-card">
+      <div class="stat-icon" style="background:#fefce8; color:#ca8a04;">
+        <i class="bi bi-people"></i>
+      </div>
+      <div>
+        <div class="stat-label">Organizations</div>
+        <div class="stat-value">{{ org_count }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-xl-3">
+    <div class="stat-card">
+      <div class="stat-icon" style="background:#fdf4ff; color:#9333ea;">
+        <i class="bi bi-person-badge"></i>
+      </div>
+      <div>
+        <div class="stat-label">Students</div>
+        <div class="stat-value">{{ student_count }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-3">
+  <div class="col-lg-6">
+    <div class="table-card">
+      <div class="table-card-header">
+        <h5><i class="bi bi-people me-2 text-muted"></i>Organizations</h5>
+        <a href="{% url 'org-list' %}" class="btn btn-sm btn-psu">View all</a>
+      </div>
+      <table class="table mb-0">
+        <thead><tr><th>Name</th><th>College</th></tr></thead>
+        <tbody>
+          {% for org in recent_orgs %}
+          <tr>
+            <td><strong>{{ org.name }}</strong></td>
+            <td><span class="badge bg-light text-dark">{{ org.college }}</span></td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="2" class="text-muted text-center py-3">No organizations yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="table-card">
+      <div class="table-card-header">
+        <h5><i class="bi bi-person-check me-2 text-muted"></i>Recent Members</h5>
+        <a href="{% url 'orgmember-list' %}" class="btn btn-sm btn-psu">View all</a>
+      </div>
+      <table class="table mb-0">
+        <thead><tr><th>Student</th><th>Organization</th><th>Joined</th></tr></thead>
+        <tbody>
+          {% for m in recent_members %}
+          <tr>
+            <td>{{ m.student }}</td>
+            <td>{{ m.organization }}</td>
+            <td><small class="text-muted">{{ m.date_joined }}</small></td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="3" class="text-muted text-center py-3">No memberships yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'studentorg/base.html' %}
+{% block title %}Memberships — PSUSphere{% endblock %}
+{% block nav_member %}active{% endblock %}
+{% block page_title %}Org Memberships{% endblock %}
+{% block content %}
+<div class="table-card">
+  <div class="table-card-header">
+    <h5><i class="bi bi-person-check me-2 text-muted"></i>All Memberships</h5>
+    <a href="{% url 'orgmember-add' %}" class="btn btn-sm btn-psu"><i class="bi bi-plus-lg me-1"></i>Add Member</a>
+  </div>
+  <table class="table mb-0">
+    <thead><tr><th>Student</th><th>Program</th><th>Organization</th><th>Date Joined</th><th>Actions</th></tr></thead>
+    <tbody>
+      {% for m in members %}
+      <tr>
+        <td><strong>{{ m.student }}</strong></td>
+        <td><small class="text-muted">{{ m.student.program }}</small></td>
+        <td><span class="badge bg-light text-dark">{{ m.organization }}</span></td>
+        <td><small>{{ m.date_joined|date:"M d, Y" }}</small></td>
+        <td>
+          <a href="{% url 'orgmember-edit' m.pk %}" class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-pencil"></i></a>
+          <a href="{% url 'orgmember-delete' m.pk %}" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></a>
+        </td>
+      </tr>
+      {% empty %}<tr><td colspan="5" class="text-center text-muted py-4">No memberships found.</td></tr>{% endfor %}
+    </tbody>
+  </table>
+  {% include 'studentorg/_pagination.html' %}
+</div>
+{% endblock %}
