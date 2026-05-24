@@ -23,12 +23,22 @@ class CollegeCreateView(CreateView):
     fields = '__all__'
     template_name = 'studentorg/college_form.html'
     success_url = reverse_lazy('college-list')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model._meta.verbose_name_plural
+        return context
 
 class CollegeUpdateView(UpdateView):
     model = College
     fields = '__all__'
     template_name = 'studentorg/college_form.html'
     success_url = reverse_lazy('college-list')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model._meta.verbose_name_plural
+        return context
 
 class CollegeDeleteView(DeleteView):
     model = College
@@ -66,12 +76,22 @@ class ProgramCreateView(CreateView):
     fields = '__all__'
     template_name = 'studentorg/program_form.html'
     success_url = reverse_lazy('program-list')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model._meta.verbose_name_plural
+        return context
 
 class ProgramUpdateView(UpdateView):
     model = Program
     fields = '__all__'
     template_name = 'studentorg/program_form.html'
     success_url = reverse_lazy('program-list')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model._meta.verbose_name_plural
+        return context
 
 class ProgramDeleteView(DeleteView):
     model = Program
@@ -102,12 +122,22 @@ class OrganizationCreateView(CreateView):
     fields = '__all__'
     template_name = 'studentorg/org_form.html'
     success_url = reverse_lazy('org-list')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model._meta.verbose_name_plural
+        return context
 
 class OrganizationUpdateView(UpdateView):
     model = Organization
     fields = '__all__'
     template_name = 'studentorg/org_form.html'
     success_url = reverse_lazy('org-list')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model._meta.verbose_name_plural
+        return context
 
 class OrganizationDeleteView(DeleteView):
     model = Organization
@@ -139,12 +169,22 @@ class StudentCreateView(CreateView):
     fields = '__all__'
     template_name = 'studentorg/student_form.html'
     success_url = reverse_lazy('student-list')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model._meta.verbose_name_plural
+        return context
 
 class StudentUpdateView(UpdateView):
     model = Student
     fields = '__all__'
     template_name = 'studentorg/student_form.html'
     success_url = reverse_lazy('student-list')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model._meta.verbose_name_plural
+        return context
 
 class StudentDeleteView(DeleteView):
     model = Student
@@ -179,12 +219,22 @@ class OrgMemberCreateView(CreateView):
     fields = '__all__'
     template_name = 'studentorg/orgmember_form.html'
     success_url = reverse_lazy('orgmember-list')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model._meta.verbose_name_plural
+        return context
 
 class OrgMemberUpdateView(UpdateView):
     model = OrgMember
     fields = '__all__'
     template_name = 'studentorg/orgmember_form.html'
     success_url = reverse_lazy('orgmember-list')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model._meta.verbose_name_plural
+        return context
 
 class OrgMemberDeleteView(DeleteView):
     model = OrgMember
