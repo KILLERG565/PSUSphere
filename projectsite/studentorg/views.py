@@ -1,11 +1,12 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import College, Program, Organization, Student, OrgMember
 from django.db.models import Q
 
 # ── College ─────────────────────────────────────────────────────────────────
 
-class CollegeListView(ListView):
+class CollegeListView(LoginRequiredMixin, ListView):
     model = College
     context_object_name = 'colleges'
     template_name = 'studentorg/college_list.html'
@@ -18,7 +19,7 @@ class CollegeListView(ListView):
             qs = qs.filter(Q(college_name__icontains=query))
         return qs
 
-class CollegeCreateView(CreateView):
+class CollegeCreateView(LoginRequiredMixin, CreateView):
     model = College
     fields = '__all__'
     template_name = 'studentorg/college_form.html'
@@ -29,7 +30,7 @@ class CollegeCreateView(CreateView):
         context['model_name'] = self.model._meta.verbose_name_plural
         return context
 
-class CollegeUpdateView(UpdateView):
+class CollegeUpdateView(LoginRequiredMixin, UpdateView):
     model = College
     fields = '__all__'
     template_name = 'studentorg/college_form.html'
@@ -40,7 +41,7 @@ class CollegeUpdateView(UpdateView):
         context['model_name'] = self.model._meta.verbose_name_plural
         return context
 
-class CollegeDeleteView(DeleteView):
+class CollegeDeleteView(LoginRequiredMixin, DeleteView):
     model = College
     template_name = 'studentorg/college_confirm_delete.html'
     success_url = reverse_lazy('college-list')
@@ -48,7 +49,7 @@ class CollegeDeleteView(DeleteView):
 
 # ── Program ──────────────────────────────────────────────────────────────────
 
-class ProgramListView(ListView):
+class ProgramListView(LoginRequiredMixin, ListView):
     model = Program
     context_object_name = 'programs'
     template_name = 'studentorg/program_list.html'
@@ -71,7 +72,7 @@ class ProgramListView(ListView):
             return sort_by
         return 'prog_name'
 
-class ProgramCreateView(CreateView):
+class ProgramCreateView(LoginRequiredMixin, CreateView):
     model = Program
     fields = '__all__'
     template_name = 'studentorg/program_form.html'
@@ -82,7 +83,7 @@ class ProgramCreateView(CreateView):
         context['model_name'] = self.model._meta.verbose_name_plural
         return context
 
-class ProgramUpdateView(UpdateView):
+class ProgramUpdateView(LoginRequiredMixin, UpdateView):
     model = Program
     fields = '__all__'
     template_name = 'studentorg/program_form.html'
@@ -93,7 +94,7 @@ class ProgramUpdateView(UpdateView):
         context['model_name'] = self.model._meta.verbose_name_plural
         return context
 
-class ProgramDeleteView(DeleteView):
+class ProgramDeleteView(LoginRequiredMixin, DeleteView):
     model = Program
     template_name = 'studentorg/program_confirm_delete.html'
     success_url = reverse_lazy('program-list')
@@ -101,7 +102,7 @@ class ProgramDeleteView(DeleteView):
 
 # ── Organization ─────────────────────────────────────────────────────────────
 
-class OrganizationListView(ListView):
+class OrganizationListView(LoginRequiredMixin, ListView):
     model = Organization
     context_object_name = 'organizations'
     template_name = 'studentorg/org_list.html'
@@ -117,7 +118,7 @@ class OrganizationListView(ListView):
             )
         return qs
 
-class OrganizationCreateView(CreateView):
+class OrganizationCreateView(LoginRequiredMixin, CreateView):
     model = Organization
     fields = '__all__'
     template_name = 'studentorg/org_form.html'
@@ -128,7 +129,7 @@ class OrganizationCreateView(CreateView):
         context['model_name'] = self.model._meta.verbose_name_plural
         return context
 
-class OrganizationUpdateView(UpdateView):
+class OrganizationUpdateView(LoginRequiredMixin, UpdateView):
     model = Organization
     fields = '__all__'
     template_name = 'studentorg/org_form.html'
@@ -139,7 +140,7 @@ class OrganizationUpdateView(UpdateView):
         context['model_name'] = self.model._meta.verbose_name_plural
         return context
 
-class OrganizationDeleteView(DeleteView):
+class OrganizationDeleteView(LoginRequiredMixin, DeleteView):
     model = Organization
     template_name = 'studentorg/org_confirm_delete.html'
     success_url = reverse_lazy('org-list')
@@ -147,7 +148,7 @@ class OrganizationDeleteView(DeleteView):
 
 # ── Student ──────────────────────────────────────────────────────────────────
 
-class StudentListView(ListView):
+class StudentListView(LoginRequiredMixin, ListView):
     model = Student
     context_object_name = 'students'
     template_name = 'studentorg/student_list.html'
@@ -164,7 +165,7 @@ class StudentListView(ListView):
             )
         return qs
 
-class StudentCreateView(CreateView):
+class StudentCreateView(LoginRequiredMixin, CreateView):
     model = Student
     fields = '__all__'
     template_name = 'studentorg/student_form.html'
@@ -175,7 +176,7 @@ class StudentCreateView(CreateView):
         context['model_name'] = self.model._meta.verbose_name_plural
         return context
 
-class StudentUpdateView(UpdateView):
+class StudentUpdateView(LoginRequiredMixin, UpdateView):
     model = Student
     fields = '__all__'
     template_name = 'studentorg/student_form.html'
@@ -186,7 +187,7 @@ class StudentUpdateView(UpdateView):
         context['model_name'] = self.model._meta.verbose_name_plural
         return context
 
-class StudentDeleteView(DeleteView):
+class StudentDeleteView(LoginRequiredMixin, DeleteView):
     model = Student
     template_name = 'studentorg/student_confirm_delete.html'
     success_url = reverse_lazy('student-list')
@@ -194,7 +195,7 @@ class StudentDeleteView(DeleteView):
 
 # ── OrgMember ────────────────────────────────────────────────────────────────
 
-class OrgMemberListView(ListView):
+class OrgMemberListView(LoginRequiredMixin, ListView):
     model = OrgMember
     context_object_name = 'members'
     template_name = 'studentorg/orgmember_list.html'
@@ -214,7 +215,7 @@ class OrgMemberListView(ListView):
             return sort_by
         return '-date_joined'
 
-class OrgMemberCreateView(CreateView):
+class OrgMemberCreateView(LoginRequiredMixin, CreateView):
     model = OrgMember
     fields = '__all__'
     template_name = 'studentorg/orgmember_form.html'
@@ -225,7 +226,7 @@ class OrgMemberCreateView(CreateView):
         context['model_name'] = self.model._meta.verbose_name_plural
         return context
 
-class OrgMemberUpdateView(UpdateView):
+class OrgMemberUpdateView(LoginRequiredMixin, UpdateView):
     model = OrgMember
     fields = '__all__'
     template_name = 'studentorg/orgmember_form.html'
@@ -236,7 +237,7 @@ class OrgMemberUpdateView(UpdateView):
         context['model_name'] = self.model._meta.verbose_name_plural
         return context
 
-class OrgMemberDeleteView(DeleteView):
+class OrgMemberDeleteView(LoginRequiredMixin, DeleteView):
     model = OrgMember
     template_name = 'studentorg/orgmember_confirm_delete.html'
     success_url = reverse_lazy('orgmember-list')

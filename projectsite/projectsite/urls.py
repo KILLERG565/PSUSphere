@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from studentorg.models import College, Program, Organization, Student, OrgMember
 
 
-class HomeView(TemplateView):
+class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'studentorg/home.html'
 
     def get_context_data(self, **kwargs):
@@ -20,6 +21,7 @@ class HomeView(TemplateView):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path('', HomeView.as_view(), name='home'),
     path('', include('studentorg.urls')),
 ]
