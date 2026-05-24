@@ -6,7 +6,34 @@
 <div class="table-card">
   <div class="table-card-header">
     <h5><i class="bi bi-person-check me-2 text-muted"></i>All Memberships</h5>
-    <a href="{% url 'orgmember-add' %}" class="btn btn-sm btn-psu"><i class="bi bi-plus-lg me-1"></i>Add Member</a>
+    <div class="d-flex gap-2">
+      <form method="get" action="{% url 'orgmember-list' %}" class="d-flex gap-2">
+        <input type="text" name="q" value="{{ request.GET.q }}"
+               placeholder="Search..." class="form-control form-control-sm">
+        <button type="submit" class="btn btn-sm btn-outline-secondary">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+      <a href="{% url 'orgmember-add' %}" class="btn btn-sm btn-psu"><i class="bi bi-plus-lg me-1"></i>Add Member</a>
+    </div>
+  </div>
+  <div class="mb-3 ps-3">
+    <form method="get" class="row g-2 align-items-center">
+      {% if request.GET.q %}<input type="hidden" name="q" value="{{ request.GET.q }}">{% endif %}
+      <div class="col-auto">
+        <label for="sortSelect" class="col-form-label">Sort by</label>
+      </div>
+      <div class="col-auto">
+        <select class="form-control form-control-sm" id="sortSelect" name="sort_by">
+          <option value="-date_joined" {% if request.GET.sort_by == "-date_joined" or not request.GET.sort_by %}selected{% endif %}>Newest First</option>
+          <option value="date_joined" {% if request.GET.sort_by == "date_joined" %}selected{% endif %}>Oldest First</option>
+          <option value="student__lastname" {% if request.GET.sort_by == "student__lastname" %}selected{% endif %}>Student Name (A-Z)</option>
+        </select>
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary btn-sm">Sort</button>
+      </div>
+    </form>
   </div>
   <table class="table mb-0">
     <thead><tr><th>Student</th><th>Program</th><th>Organization</th><th>Date Joined</th><th>Actions</th></tr></thead>

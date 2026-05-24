@@ -6,7 +6,34 @@
 <div class="table-card">
   <div class="table-card-header">
     <h5><i class="bi bi-book me-2 text-muted"></i>All Programs</h5>
-    <a href="{% url 'program-add' %}" class="btn btn-sm btn-psu"><i class="bi bi-plus-lg me-1"></i>Add Program</a>
+    <div class="d-flex gap-2">
+      <form method="get" action="{% url 'program-list' %}" class="d-flex gap-2">
+        <input type="text" name="q" value="{{ request.GET.q }}"
+               placeholder="Search..." class="form-control form-control-sm">
+        <button type="submit" class="btn btn-sm btn-outline-secondary">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+      <a href="{% url 'program-add' %}" class="btn btn-sm btn-psu"><i class="bi bi-plus-lg me-1"></i>Add Program</a>
+    </div>
+  <div class="mb-3 ps-3">
+    <form method="get" class="row g-2 align-items-center">
+      {% if request.GET.q %}<input type="hidden" name="q" value="{{ request.GET.q }}">{% endif %}
+      <div class="col-auto">
+        <label for="sortSelect" class="col-form-label">Sort by</label>
+      </div>
+      <div class="col-auto">
+        <select class="form-control form-control-sm" id="sortSelect" name="sort_by">
+          <option value="prog_name" {% if request.GET.sort_by == "prog_name" or not request.GET.sort_by %}selected{% endif %}>Program Name (A-Z)</option>
+          <option value="-prog_name" {% if request.GET.sort_by == "-prog_name" %}selected{% endif %}>Program Name (Z-A)</option>
+          <option value="college__college_name" {% if request.GET.sort_by == "college__college_name" %}selected{% endif %}>College Name</option>
+        </select>
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary btn-sm">Sort</button>
+      </div>
+    </form>
+  </div>
   </div>
   <table class="table mb-0">
     <thead><tr><th>#</th><th>Program</th><th>College</th><th>Actions</th></tr></thead>
